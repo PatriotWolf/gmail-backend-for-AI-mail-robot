@@ -32,6 +32,10 @@ app.post('/',function(req,res){
 		    labelIds:['CATEGORY_PERSONAL'],
 		    maxResults:100,
 		  },function(err,response){
+		  	 if(err){
+		        res.json(err);
+		        return;
+		      }
 		  	res.json(response);
 		  });
 		
