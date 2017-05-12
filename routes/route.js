@@ -16,9 +16,9 @@ var appRouter= function (app)
 		    labelIds:['CATEGORY_PERSONAL'],
 		    maxResults:100,
 		  },function(err,response){
-
+		  		res.json(response);
 		  });
-		res.send(JSON.stringify(auth));
+		
 	});
 }
 module.exports=appRouter;
