@@ -22,18 +22,18 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });   
 });
 
-router.post('/',function(req,res){
+app.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
-		res.json(req.body);
-		// gmail.users.messages.list({
-		//     auth:auth,
-		//     userId:'me',
-		//     labelIds:['CATEGORY_PERSONAL'],
-		//     maxResults:100,
-		//   },function(err,response){
-
-		//   });
+		//res.json(req.body);
+		gmail.users.messages.list({
+		    auth:auth,
+		    userId:'me',
+		    labelIds:['CATEGORY_PERSONAL'],
+		    maxResults:100,
+		  },function(err,response){
+		  	res.json(response);
+		  });
 		
 	});
 // more routes for our API will happen here
