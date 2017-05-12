@@ -10,14 +10,15 @@ var appRouter= function (app)
 	app.post("/",function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
-		gmail.users.messages.list({
-		    auth:auth,
-		    userId:'me',
-		    labelIds:['CATEGORY_PERSONAL'],
-		    maxResults:100,
-		  },function(err,response){
-		  		res.json(response);
-		  });
+		res.json(req.body);
+		// gmail.users.messages.list({
+		//     auth:auth,
+		//     userId:'me',
+		//     labelIds:['CATEGORY_PERSONAL'],
+		//     maxResults:100,
+		//   },function(err,response){
+
+		//   });
 		
 	});
 }
