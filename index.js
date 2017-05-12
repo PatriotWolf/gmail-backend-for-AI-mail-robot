@@ -11,6 +11,6 @@ app.use(bodyParser.text({type: '*/*'}));
 
 var route=require('./routes/route.js')(app);
 
-var server= app.listen(3000,function(){
+var server= app.listen(process.env.port || 3000,function(){
 	console.log("listening on port %s",server.address().port);
 })
