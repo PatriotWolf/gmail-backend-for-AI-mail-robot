@@ -26,7 +26,7 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
-		googleAuth.getToken(req.body.auth, function (err, tokens) {
+		googleAuth.getToken(auth, function (err, tokens) {
 		  res.json(tokens)
 		  // Now tokens contains an access_token and an optional refresh_token. Save them.
 		  if (!err) {
