@@ -5,11 +5,6 @@ var bodyParser = require('body-parser');
 var google=require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
-var oauth2Client = new OAuth2(
-  YOUR_CLIENT_ID,
-  YOUR_CLIENT_SECRET,
-  YOUR_REDIRECT_URL
-);
 
 var googleAuth = require('google-auth-library');
 var verifier = require('google-id-token-verifier');
