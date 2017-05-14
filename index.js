@@ -34,7 +34,11 @@ router.post('/',function(req,res){
 				verifier.verify(token, clientId, function (err, tokenInfo) {
 		  if (!err) {
 		    // use tokenInfo in here. 
-		    console.log(tokenInfo);
+		    res.json(tokenInfo);
+		  }
+		  if(err)
+		  {
+		  	res.json(err);
 		  }
 		});
 
