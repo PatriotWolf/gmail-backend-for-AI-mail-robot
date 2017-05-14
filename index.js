@@ -5,7 +5,7 @@ var fs = require('fs');
 var google=require('googleapis');
 var googleAuth = require('google-auth-library');
 var googlecontent;
-fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+fs.readFile('client_secret.json','utf8', function processClientSecrets(err, content) {
 	if (err) {
     console.log('Error loading client secret file: ' + err);
     return;
