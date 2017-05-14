@@ -7,7 +7,8 @@ var googleAuth = require('google-auth-library');
 var googlecontent;
 fs.readFile('client_secret.json', function processClientSecrets(err, content) {
 		googlecontent=content;
-		console.log("read the client secret")
+		console.log("read the client secret");
+		console.log(JSON.stringify(googlecontent));
 });
 var auth = new googleAuth();
 var gmail=google.gmail('v1');
