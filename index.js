@@ -12,7 +12,7 @@ fs.readFile('client_secret.json','utf8', function processClientSecrets(err, cont
   }
 		googlecontent=content;
 		console.log("read the client secret");
-		console.log(JSON.stringify(googlecontent));
+		console.log(googlecontent.client_secret);
 });
 var auth = new googleAuth();
 var gmail=google.gmail('v1');
