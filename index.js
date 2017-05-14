@@ -34,10 +34,10 @@ router.post('/',function(req,res){
 		    maxResults:100,
 		  },function(err,response){
 		  	 if(err){
-		        res.json(err);
+		        res.json("error");
 		        return;
 		      }
-		  	res.json(response);
+		  	res.json("just text");
 		  });
 		
 	});
