@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 
 var google=require('googleapis');
 var googleAuth = require('google-auth-library');
+var auth = new googleAuth;
+var client = new auth.OAuth2('916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com','','')
 var gmail=google.gmail('v1');
 
 // configure app to use bodyParser()
@@ -26,13 +28,19 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
-		googleAuth.getToken(auth, function (err, tokens) {
-		  res.json(tokens)
-		  // Now tokens contains an access_token and an optional refresh_token. Save them.
-		  if (!err) {
-		    oauth2Client.setCredentials(tokens);
-		  }
-		});
+		client.verifyIdToken(
+		    auth,
+		    '916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com',
+		    // Or, if multiple clients access the backend:
+		    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
+		    function(e, login) {
+		      var payload = login.getPayload();
+		      var userid = payload['sub'];
+		      var obj={"payload":payload,"userid":userid}
+		      res.json(obj);
+		      // If request specified a G Suite domain:
+		      //var domain = payload['hd'];
+	    });
 	});
 // more routes for our API will happen here
 
