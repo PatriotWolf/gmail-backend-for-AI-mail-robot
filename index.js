@@ -10,7 +10,7 @@ fs.readFile('client_secret.json','utf8', function processClientSecrets(err, cont
     console.log('Error loading client secret file: ' + err);
     return;
   }
-		googlecontent=content;
+		googlecontent=JSON.parse(content);
 		console.log("read the client secret");
 		console.log(googlecontent.client_secret);
 });
