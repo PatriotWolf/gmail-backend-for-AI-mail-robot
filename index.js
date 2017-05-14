@@ -53,11 +53,11 @@ router.post('/',function(req,res){
 		    maxResults:10,
 		  },function(err,response){
 		  		if(err)
-		  	{		res.json("you got error");
+		  	{		res.json("error :" + err);
 
 
 		  	}
-		  	res.json(response);
+		  	else{res.json(response);}
 
 		  });
 
