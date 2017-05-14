@@ -28,10 +28,9 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
-		console.log();
 		client.verifyIdToken(
 		    auth,
-		    '916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com',
+		    id,
 		    // Or, if multiple clients access the backend:
 		    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
 		    function(e, login) {
