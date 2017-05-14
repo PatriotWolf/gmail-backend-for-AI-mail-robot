@@ -45,9 +45,10 @@ router.post('/',function(req,res){
 		var id=req.body.clientID;
 		console.log(token);
 		//use the access code
-			oauth2Client.setCredentials(token);
+			// oauth2Client.setCredentials(token);
+			// console.log(oauth2Client);
 		gmail.users.messages.list({
-		    auth:oauth2Client,
+		    auth:token,
 		    userId:'me',
 		    labelIds:['CATEGORY_PERSONAL'],
 		    maxResults:10,
