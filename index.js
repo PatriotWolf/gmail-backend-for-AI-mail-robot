@@ -14,7 +14,7 @@ fs.readFile('client_secret.json','utf8', function processClientSecrets(err, cont
 		console.log("read the client secret");
 		console.log(googlecontent.web.client_secret);
 });
-var auth = new googleAuth();
+
 var gmail=google.gmail('v1');
 
 // configure app to use bodyParser()
@@ -40,6 +40,7 @@ router.post('/',function(req,res){
 		var clientSecret = googlecontent.web.client_secret;
 	 	var clientId = googlecontent.web.client_id;
 	  	var redirectUrl = googlecontent.web.redirect_uris[0];
+	  	var auth = new googleAuth();
 	  	 var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 		oauth2Client.getToken(req.body.auth, function (err, tokens) {
 		  res.json(tokens)
