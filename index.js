@@ -33,7 +33,7 @@ router.post('/',function(req,res){
 		  method: 'POST',
 		  url: 'www.googleapis.com/oauth2/v4/token',
 		  headers: {
-		    'content-type': 'application/json'
+		    'content-type': 'x-www-form-urlencoded'
 		  },
 			code:token,
 	client_id:'916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com',
@@ -44,8 +44,8 @@ router.post('/',function(req,res){
 
 		};
 		request(options, function(err,response,body){
-				if(err)
-						res.json(err);
+				
+						res.json(body);
 
 		});
 
