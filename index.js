@@ -32,9 +32,9 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
-		var clientSecret = googlecontent.installed.client_secret;
-	 	var clientId = googlecontent.installed.client_id;
-	  	var redirectUrl = googlecontent.installed.redirect_uris[0];
+		var clientSecret = googlecontent.web.client_secret;
+	 	var clientId = googlecontent.web.client_id;
+	  	var redirectUrl = googlecontent.web.redirect_uris[0];
 	  	 var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
 		oauth2Client.getToken(req.body.auth, function (err, tokens) {
 		  res.json(tokens)
