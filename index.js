@@ -3,7 +3,7 @@ var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 
 var google=require('googleapis');
-
+var googleAuth = require('google-auth-library');
 var gmail=google.gmail('v1');
 
 // configure app to use bodyParser()
@@ -26,20 +26,13 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
-		//res.json(req.body);
-		gmail.users.messages.list({
-		    auth:auth,
-		    userId:id,
-		    labelIds:['CATEGORY_PERSONAL'],
-		    maxResults:100,
-		  },function(err,response){
-		  	 if(err){
-		        res.json("error");
-		        return;
-		      }
-		  	res.json("just text");
-		  });
-		
+		googleAuth.getToken(req.body.auth, function (err, tokens) {
+		  res.json(tokens)
+		  // Now tokens contains an access_token and an optional refresh_token. Save them.
+		  if (!err) {
+		    oauth2Client.setCredentials(tokens);
+		  }
+		});
 	});
 // more routes for our API will happen here
 
