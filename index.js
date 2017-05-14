@@ -10,7 +10,6 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
 		console.log("read the client secret")
 });
 var auth = new googleAuth();
-var oauth2Client=new auth.OAuth2(clientId, clientSecret, redirectUrl);
 var gmail=google.gmail('v1');
 
 // configure app to use bodyParser()
