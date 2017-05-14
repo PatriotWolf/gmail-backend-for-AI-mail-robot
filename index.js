@@ -44,7 +44,7 @@ router.post('/',function(req,res){
 
 		};
 		request(options, function(err,response,body){
-				res.json(body);
+				res.json("i got something!");
 		});
 
 	});
