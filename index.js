@@ -4,8 +4,7 @@ var bodyParser = require('body-parser');
 
 var google=require('googleapis');
 var googleAuth = require('google-auth-library');
-var auth = new googleAuth;
-var client = new auth.OAuth2('916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com','','')
+
 var gmail=google.gmail('v1');
 
 // configure app to use bodyParser()
@@ -28,9 +27,11 @@ router.post('/',function(req,res){
 		var obj=req.body
 		var auth=req.body.auth;
 		var id=req.body.clientID;
+		var auth = new googleAuth;
+var client = new auth.OAuth2('916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com','','')
 		client.verifyIdToken(
 		    auth,
-		    id,
+		    '916867267412-61vafvip23245d2hqmqujjvmbm5vjklq.apps.googleusercontent.com',
 		    // Or, if multiple clients access the backend:
 		    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
 		    function(e, login) {
