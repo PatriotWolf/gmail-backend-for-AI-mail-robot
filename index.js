@@ -45,23 +45,29 @@ router.post('/',function(req,res){
 		var id=req.body.clientID;
 		console.log(token);
 		//use the access code
-				var cred={"access_token":token};
-			oauth2Client.setCredentials(cred);
-			console.log(oauth2Client);
-		gmail.users.messages.list({
-		    auth:oauth2Client,
-		    userId:'me',
-		    labelIds:['CATEGORY_PERSONAL'],
-		    maxResults:10,
-		  },function(err,response){
-		  		if(err)
-		  	{		res.json("error :" + err);
+		oauth2Client.getToken(token, function (err, tokens) {
+		  // Now tokens contains an access_token and an optional refresh_token. Save them.
+		  if (!err) {
+		    oauth2Client.setCredentials(tokens);
+		    console.log(oauth2Client);
+			gmail.users.messages.list({
+			    auth:oauth2Client,
+			    userId:'me',
+			    labelIds:['CATEGORY_PERSONAL'],
+			    maxResults:10,
+			  },function(err,response){
+			  		if(err)
+			  	{		res.json("error :" + err);
 
 
-		  	}
-		  	else{res.json(response);}
+			  	}
+			  	else{res.json(response);}
 
-		  });
+			  });
+		  }
+		});
+				
+			
 
 
 	});
