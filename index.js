@@ -48,7 +48,7 @@ router.post('/',function(req,res){
 		oauth2Client.getToken(token, function (err, tokens) {
 		  // Now tokens contains an access_token and an optional refresh_token. Save them.
 		  if (!err) {
-		    oauth2Client.setCredentials(tokens);
+		    oauth2Client.setCredentials(tokens.access_token);
 		    console.log(oauth2Client);
 			gmail.users.messages.list({
 			    auth:oauth2Client,
