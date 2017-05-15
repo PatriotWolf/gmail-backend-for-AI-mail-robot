@@ -3,7 +3,7 @@ var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 
 var google=require('googleapis');
-var OAuth2 = google.auth.OAuth2;
+
 
 
 var googleAuth = require('google-auth-library');
@@ -53,7 +53,7 @@ router.post('/',function(req,res){
 					console.log(oauth2Client);
 					gmail.users.messages.list({
 					    auth:oauth2Client,
-					    userId:'me',
+					    userId:id,
 					    labelIds:['CATEGORY_PERSONAL'],
 					    maxResults:10,
 					  },function(err,response){
