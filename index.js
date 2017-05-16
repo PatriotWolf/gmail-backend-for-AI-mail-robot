@@ -70,12 +70,13 @@ router.post('/',function(req,res){
 			//OBTAIN VALUE FROM DATABASE
 			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
 				 if(snapshot.val() !== null){
-				 	console.log('user ' + id + ' exists!');
+				 	res.json('user ' + id + ' exists!');
 				 }
 				 else {
 			    	var usersRef=ref;
 			    	usersRef=usersRef.push();
 					usersRef.set({  auth:token, id:id });
+					res.json("success")
 			  	}
 			    
 				
