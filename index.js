@@ -1,7 +1,19 @@
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
+var admin = require("firebase-admin");
+var dir=__dirname;
+var serviceAccount = require(dir+"/airobot-mail-firebase-adminsdk-2myo2-0f0456aa32.json");
+//Firebase setup
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://airobot-mail.firebaseio.com"
+});
 
+
+
+
+//Google Setup
 var google=require('googleapis');
 var OAuth2 = google.auth.OAuth2;
 
@@ -41,30 +53,52 @@ router.get('/', function(req, res) {
 
 router.post('/',function(req,res){
 		//var obj=req.body
+
 		var token=req.body.auth;
 		var id=req.body.clientID;
 		console.log(token);
 		//use the access code
+		
 		oauth2Client.getToken(token, function (err, tokens) {
 		  // Now tokens contains an access_token and an optional refresh_token. Save them.
 		  if (!err) {
 		  	var cred={"access_token":tokens.access_token}
 		    oauth2Client.setCredentials(cred);
 		    console.log(oauth2Client);
-			gmail.users.messages.list({
-			    auth:oauth2Client,
-			    userId:'me',
-			    labelIds:['CATEGORY_PERSONAL'],
-			    maxResults:10,
-			  },function(err,response){
-			  		if(err)
-			  	{		res.json("error :" + err);
-
-
+		    var db=admin.database();
+			var ref =db.ref("users");
+			//OBTAIN VALUE FROM DATABASE
+			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
+				 if(snapshot.val() !== null){
+				 	console.log('user ' + id + ' exists!');
+				 }
+				 else {
+			    	var usersRef=ref;
+			    	usersRef=usersRef.push();
+					usersRef.set({  auth:token, id:id });
 			  	}
-			  	else{res.json(response);}
+			    
+				
+			});
+		    
+			// gmail.users.messages.list({
+			//     auth:oauth2Client,
+			//     userId:'me',
+			//     labelIds:['CATEGORY_PERSONAL','UNREAD'],
+			//     maxResults:10,
+			//   },function(err,response){
+			//   		if(err)
+			//   	{		res.json("error :" + err);
 
-			  });
+
+			//   	}
+			//   	else{res.json(response);}
+
+			//   });
+
+		  }
+		  else
+		  {	res.json(err)
 		  }
 		});
 				
