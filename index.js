@@ -65,7 +65,7 @@ router.post('/',function(req,res){
 
 		  if (!err) {
 		  	var cred={"access_token":tokens.access_token}
-		    oauth2Client.setCredentials(cred);
+		    oauth2Client.setCredentials(tokens);
 		    console.log(oauth2Client);
 		    var db=admin.database();
 			var ref =db.ref("users");
