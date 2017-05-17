@@ -95,7 +95,7 @@ router.post('/',function(req,res){
 						  	}
 						  	else{
 						  		res.json(response);
-						  		console.log(ref.child(storedid).set({auth:token,id:storedid,messages:response.messages}));
+						  		console.log(ref.child(obj).set({auth:token,id:storedid,messages:response.messages}));
 						  	}
 
 						  });
