@@ -76,8 +76,11 @@ router.post('/',function(req,res){
 				 	var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
-				 	console.log(obj);
-
+				 	storedToken=snapshot.val()[obj].auth
+	 				
+	 				if(token==storedToken){
+	 					console.log("it's the same!");
+	 				}
 				 }
 				 else {
 			    	var usersRef=ref;
