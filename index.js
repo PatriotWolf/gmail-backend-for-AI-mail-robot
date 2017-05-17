@@ -76,7 +76,7 @@ router.post('/',function(req,res){
 				 	var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
-				 	storedToken=snapshot.val()[obj].auth
+				 	storedid=snapshot.val()[obj].id;
 	 				
 	 				if(token==storedToken){
 	 					console.log("it's the same!");
@@ -95,7 +95,7 @@ router.post('/',function(req,res){
 						  	}
 						  	else{
 						  		res.json(response);
-						  		console.log(ref);
+						  		console.log(ref.child(storedid).set({auth:token,id:storedid,messages:response.messages}));
 						  	}
 
 						  });
