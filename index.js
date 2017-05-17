@@ -73,7 +73,11 @@ router.post('/',function(req,res){
 			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
 				 if(snapshot.val() !== null){
 				 	res.json('user ' + id + ' exists!');
-				 	console.log(snapshot.key);
+				 	var obj=snapshot.val();
+				 	obj= Object.keys(obj)
+				 	obj=obj[0];
+				 	console.log(obj);
+
 				 }
 				 else {
 			    	var usersRef=ref;
