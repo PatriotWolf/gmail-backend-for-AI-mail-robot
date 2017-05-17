@@ -72,7 +72,7 @@ router.post('/',function(req,res){
 			//OBTAIN VALUE FROM DATABASE
 			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
 				 if(snapshot.val() !== null){
-				 	res.json('user ' + id + ' exists!');
+				 	//res.json('user ' + id + ' exists!');
 				 	var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
@@ -82,9 +82,20 @@ router.post('/',function(req,res){
 	 					console.log("it's the same!");
 	 				}
 	 				else{
-	 					console.log("not same");
-	 					console.log(token);
-	 					console.log(storedToken);
+	 					gmail.users.messages.list({
+						    auth:oauth2Client,
+						    userId:'me',
+						    labelIds:['CATEGORY_PERSONAL','UNREAD'],
+						    maxResults:10,
+						  },function(err,response){
+						  		if(err)
+						  	{		res.json("error :" + err);
+
+
+						  	}
+						  	else{res.json(response);}
+
+						  });
 	 				}
 				 }
 				 else {
