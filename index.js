@@ -81,6 +81,11 @@ router.post('/',function(req,res){
 	 				if(token==storedToken){
 	 					console.log("it's the same!");
 	 				}
+	 				else{
+	 					console.log("not same");
+	 					console.log(token);
+	 					console.log(storedToken);
+	 				}
 				 }
 				 else {
 			    	var usersRef=ref;
