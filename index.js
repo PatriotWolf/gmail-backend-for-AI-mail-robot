@@ -61,7 +61,8 @@ router.post('/',function(req,res){
 		
 		oauth2Client.getToken(token, function (err, tokens) {
 		  // Now tokens contains an access_token and an optional refresh_token. Save them.
-		  console.log(tokens);
+		  //console.log(tokens);
+
 		  if (!err) {
 		  	var cred={"access_token":tokens.access_token}
 		    oauth2Client.setCredentials(cred);
@@ -72,6 +73,7 @@ router.post('/',function(req,res){
 			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
 				 if(snapshot.val() !== null){
 				 	res.json('user ' + id + ' exists!');
+				 	console.log(snapshot.val());
 				 }
 				 else {
 			    	var usersRef=ref;
