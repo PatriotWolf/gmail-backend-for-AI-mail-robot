@@ -93,7 +93,10 @@ router.post('/',function(req,res){
 
 
 						  	}
-						  	else{res.json(response);}
+						  	else{
+						  		res.json(response);
+						  		console.log(ref);
+						  	}
 
 						  });
 	 				}
