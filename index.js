@@ -3,7 +3,7 @@ var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var admin = require("firebase-admin");
 var dir=__dirname;
-var serviceAccount = require(dir+"/airobot-mail-firebase-adminsdk-2myo2-0f0456aa32.json");
+var serviceAccount = require(dir+"/idm-lab-email-robot-firebase-adminsdk-hmrrv-7c17e0643b.json");
 //Firebase setup
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
