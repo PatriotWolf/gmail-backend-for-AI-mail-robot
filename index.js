@@ -24,8 +24,8 @@ var request = require('request');
 var OAuth2 = google.auth.OAuth2;
 
 var oauth2Client = new OAuth2(
-  "795974387130-5tco8empsju82og1ses0hll21mnvoql7.apps.googleusercontent.com",
-  "xj2_OBaeSfaWGZBg9X6NjGPs",
+  "279920076626-ldn2ip0ga9b8bner33lqnq7jqga8n048.apps.googleusercontent.com",
+  "x6_DJWgP13SlToWEM_hCedz7",
   "https://api.ionic.io/auth/integrations/google?app_id=c173370c"
 );
 
