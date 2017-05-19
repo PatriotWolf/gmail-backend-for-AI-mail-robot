@@ -52,10 +52,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/',function(req,res){
-		//var obj=req.body
+		var reqObj=req.body
 
-		var token=req.body.auth;
-		var id=req.body.clientID;
+		var token=req.body.serverAuthCode;
+		var id=req.body.userId;
 		console.log(token);
 		//use the access code
 		
@@ -94,7 +94,7 @@ router.post('/',function(req,res){
 						  	}
 						  	else{
 						  		res.json(response);
-						  		console.log(ref.child(obj).set({auth:token,id:storedid,messages:response.messages}));
+						  		console.log(ref.child(obj).set(reqObj));
 						  	}
 
 						  });
