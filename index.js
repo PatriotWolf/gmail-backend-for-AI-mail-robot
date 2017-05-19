@@ -56,7 +56,7 @@ router.post('/',function(req,res){
 
 		var token=req.body.serverAuthCode;
 		var id=req.body.userId;
-		console.log(token);
+		console.log(reqObj);
 		//use the access code
 		
 		oauth2Client.getToken(token, function (err, tokens) {
