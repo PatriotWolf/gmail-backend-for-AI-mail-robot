@@ -7,7 +7,7 @@ var serviceAccount = require(dir+"/idm-lab-email-robot-firebase-adminsdk-hmrrv-7
 //Firebase setup
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://airobot-mail.firebaseio.com"
+  databaseURL: "https://idm-lab-email-robot.firebaseio.com"
 });
 
 
@@ -62,9 +62,8 @@ router.post('/',function(req,res){
 		oauth2Client.getToken(token, function (err, tokens) {
 		  // Now tokens contains an access_token and an optional refresh_token. Save them.
 		 console.log(tokens);
-
+		 
 		  if (!err) {
-		  	var cred={"access_token":tokens.access_token}
 		    oauth2Client.setCredentials(tokens);
 		    console.log(oauth2Client);
 		    var db=admin.database();
