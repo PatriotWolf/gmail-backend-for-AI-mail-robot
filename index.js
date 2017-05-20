@@ -66,6 +66,7 @@ router.post('/',function(req,res){
 		  if (!err) {
 		    oauth2Client.setCredentials(tokens);
 		    console.log(oauth2Client);
+		    reqObj.refresh_token=tokens.refresh_token
 		    var db=admin.database();
 			var ref =db.ref("users");
 			//OBTAIN VALUE FROM DATABASE
@@ -81,7 +82,7 @@ router.post('/',function(req,res){
 	 					console.log("it's the same!");
 	 				}
 	 				else{
-	 					reqObj.refresh_token=tokens.refresh_token
+	 					
 	 					gmail.users.messages.list({
 						    auth:oauth2Client,
 						    userId:'me',
@@ -95,19 +96,20 @@ router.post('/',function(req,res){
 						  	}
 						  	else{
 						  		res.json(response);
-						  		admin.database().goOffline();
-						  		console.log(ref.child(obj).set(reqObj));
+						  		//admin.database().goOffline();
+						  		//console.log(ref.child(obj).set(reqObj));
 						  	}
 
 						  });
 	 				}
 				 }
 				 else {
-			  //   	var usersRef=ref;
-			  //   	usersRef=usersRef.push();
-					// usersRef.set({  auth:token, id:id });
+					  var usersRef=ref
+				     	usersRef=usersRef.push();
+						
+						usersRef.set(reqObj);
 					res.json("success")
-					admin.database().goOffline();
+					//admin.database().goOffline();
 			  	}
 			    
 				
