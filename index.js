@@ -81,6 +81,7 @@ router.post('/',function(req,res){
 	 					console.log("it's the same!");
 	 				}
 	 				else{
+	 					reqObj.refresh_token=tokens.refresh_token
 	 					gmail.users.messages.list({
 						    auth:oauth2Client,
 						    userId:'me',
@@ -94,6 +95,7 @@ router.post('/',function(req,res){
 						  	}
 						  	else{
 						  		res.json(response);
+						  		admin.database().goOffline();
 						  		console.log(ref.child(obj).set(reqObj));
 						  	}
 
@@ -101,10 +103,11 @@ router.post('/',function(req,res){
 	 				}
 				 }
 				 else {
-			    	var usersRef=ref;
-			    	usersRef=usersRef.push();
-					usersRef.set({  auth:token, id:id });
+			  //   	var usersRef=ref;
+			  //   	usersRef=usersRef.push();
+					// usersRef.set({  auth:token, id:id });
 					res.json("success")
+					admin.database().goOffline();
 			  	}
 			    
 				
