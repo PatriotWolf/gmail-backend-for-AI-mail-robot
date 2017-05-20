@@ -26,7 +26,7 @@ var OAuth2 = google.auth.OAuth2;
 var oauth2Client = new OAuth2(
   "279920076626-a3otvdte7q7vljcfa70k6ogd3a9vofh1.apps.googleusercontent.com",
   "s8iCZQJH8UBRYRtiHknIlsOg",
-  "https://api.ionic.io/auth/integrations/google?app_id=c173370c"
+  "https://idm-lab-email-robot.firebaseapp.com/__/auth/handler"
 );
 
 var gmail=google.gmail('v1');
