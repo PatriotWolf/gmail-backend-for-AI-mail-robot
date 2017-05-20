@@ -54,7 +54,7 @@ router.get('/', function(req, res) {
 router.post('/',function(req,res){
 		var reqObj=req.body
 
-		var token=req.body.serverAuthCode;
+		var token=reqObj.serverAuthCode;
 		var id=req.body.userId;
 		console.log(reqObj);
 		//use the access code
