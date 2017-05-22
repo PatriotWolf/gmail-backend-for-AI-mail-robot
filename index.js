@@ -66,7 +66,10 @@ router.post('/',function(req,res){
 		  if (!err) {
 		    oauth2Client.setCredentials(tokens);
 		    console.log(oauth2Client);
-		    reqObj.refresh_token=tokens.refresh_token
+		    if(tokens.hasOwnProperty('refreshtoken'))
+		    {
+		    		    reqObj.refresh_token=tokens.refresh_token
+		    }
 		    var db=admin.database();
 			var ref =db.ref("users");
 			//OBTAIN VALUE FROM DATABASE
@@ -76,11 +79,13 @@ router.post('/',function(req,res){
 				 	var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
+				 	if(tokens.hasOwnProperty('refreshtoken'))
+				    {
+				    		    obj.refresh_token=tokens.refresh_token
+				    }
 				 	storedid=snapshot.val()[obj].id;
 	 				storedToken=snapshot.val()[obj].auth;
-	 				if(token==storedToken){
-	 					console.log("it's the same!");
-	 				}
+	 				
 	 				else{
 	 					
 	 					gmail.users.messages.list({
