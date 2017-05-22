@@ -55,7 +55,7 @@ router.post('/',function(req,res){
 		var reqObj=req.body
 
 		var token=reqObj.serverAuthCode;
-		var id=req.body.userId;
+		var id=reqObj.userId;
 		console.log(token);
 		//use the access code
 		
@@ -73,7 +73,7 @@ router.post('/',function(req,res){
 		    var db=admin.database();
 			var ref =db.ref("users");
 			//OBTAIN VALUE FROM DATABASE
-			ref.orderByChild("id").equalTo(id).once("value",function (snapshot){
+			ref.orderByChild("userId").equalTo(id).once("value",function (snapshot){
 				 if(snapshot.val() !== null){
 				 	//res.json('user ' + id + ' exists!');
 				 	var obj=snapshot.val();
