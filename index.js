@@ -83,6 +83,8 @@ router.post('/',function(req,res){
 				    {
 				    		    obj.refresh_token=tokens.refresh_token
 				    }
+				    obj.tokens=tokens;
+
 				 	storedid=snapshot.val()[obj].id;
 	 				storedToken=snapshot.val()[obj].auth;
 	 				
@@ -111,7 +113,8 @@ router.post('/',function(req,res){
 				 else {
 					  var usersRef=ref
 				     	usersRef=usersRef.push();
-						
+						reqObj.client_id="279920076626-ldn2ip0ga9b8bner33lqnq7jqga8n048.apps.googleusercontent.com";
+				    	reqObj.client_secret="x6_DJWgP13SlToWEM_hCedz7";
 						usersRef.set(reqObj);
 					res.json("success")
 					//admin.database().goOffline();
