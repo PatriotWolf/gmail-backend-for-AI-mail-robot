@@ -86,7 +86,7 @@ router.post('/',function(req,res){
 				 	storedid=snapshot.val()[obj].id;
 	 				storedToken=snapshot.val()[obj].auth;
 	 				
-	 				else{
+	 				
 	 					
 	 					gmail.users.messages.list({
 						    auth:oauth2Client,
@@ -106,7 +106,7 @@ router.post('/',function(req,res){
 						  	}
 
 						  });
-	 				}
+	 				
 				 }
 				 else {
 					  var usersRef=ref
