@@ -79,10 +79,7 @@ router.post('/',function(req,res){
 				 	var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
-				 	if(tokens.hasOwnProperty('refreshtoken'))
-				    {
-				    		    obj.refresh_token=tokens.refresh_token
-				    }
+				 	
 				    obj.tokens=tokens;
 
 				 	storedid=snapshot.val()[obj].id;
@@ -113,8 +110,19 @@ router.post('/',function(req,res){
 				 else {
 					  var usersRef=ref
 				     	usersRef=usersRef.push();
+				     	if(tokens.hasOwnProperty('refresh_token'))
+					    {
+					    		    reqObj.refresh_token=tokens.refresh_token;
+					    }
+					    delete reqObj["accessToken"];
+					    reqObj.access_token=tokens.access_token;
 						reqObj.client_id="279920076626-ldn2ip0ga9b8bner33lqnq7jqga8n048.apps.googleusercontent.com";
 				    	reqObj.client_secret="x6_DJWgP13SlToWEM_hCedz7";
+				    	reqObj._class="OAuth2Credentials";
+				    	reqObj._module="oauth2client.client";
+				    	reqObj.invalid="false";
+				    	reqObj.token_expiry=tokens.expiry_date;
+        				reqObj.token_uri="https://accounts.google.com/o/oauth2/token";
 						usersRef.set(reqObj);
 					res.json("success")
 					//admin.database().goOffline();
