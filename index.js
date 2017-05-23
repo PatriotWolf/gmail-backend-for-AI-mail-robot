@@ -1,3 +1,4 @@
+var request = require("request");
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
@@ -185,7 +186,19 @@ router.post('/',function(req,res){
 
 	});
 	router.post('/true',function(req,res){
-		res.json({response:"true"})
+		var options = { method: 'POST',
+		  url: 'http://13.76.181.19:9090/api/message',
+		  headers: 
+		   { 		     'content-type': 'application/json' },
+		  body: 'are you okay?',
+		  json: true };
+
+		request(options, function (error, response, body) {
+		  if (error) throw new Error(res.json(error));
+
+		  res.json({response:body})
+		});
+		
 	});
 	router.post('/false',function(req,res){
 		res.json({response:"false"})
