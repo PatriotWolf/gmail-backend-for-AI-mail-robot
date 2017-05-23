@@ -184,6 +184,12 @@ router.post('/',function(req,res){
 
 
 	});
+	router.post('/true',function(req,res){
+		res.json({response:"true"})
+	});
+	router.post('/false',function(req,res){
+		res.json({response:"false"})
+	});
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
