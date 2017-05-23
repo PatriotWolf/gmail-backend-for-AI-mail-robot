@@ -84,27 +84,27 @@ router.post('/',function(req,res){
 
 				 	storedid=snapshot.val()[obj].id;
 	 				storedToken=snapshot.val()[obj].auth;
-	 				
-	 				
+	 				console.log(ref.child(obj).set(reqObj));
+	 				res.json("updated")
 	 					
-	 					gmail.users.messages.list({
-						    auth:oauth2Client,
-						    userId:'me',
-						    labelIds:['CATEGORY_PERSONAL','UNREAD'],
-						    maxResults:10,
-						  },function(err,response){
-						  		if(err)
-						  	{		res.json("error :" + err);
+	 					// gmail.users.messages.list({
+						 //    auth:oauth2Client,
+						 //    userId:'me',
+						 //    labelIds:['CATEGORY_PERSONAL','UNREAD'],
+						 //    maxResults:10,
+						 //  },function(err,response){
+						 //  		if(err)
+						 //  	{		res.json("error :" + err);
 
 
-						  	}
-						  	else{
-						  		res.json(response);
-						  		//admin.database().goOffline();
-						  		//console.log(ref.child(obj).set(reqObj));
-						  	}
+						 //  	}
+						 //  	else{
+						 //  		res.json(response);
+						 //  		//admin.database().goOffline();
+						 //  		//console.log(ref.child(obj).set(reqObj));
+						 //  	}
 
-						  });
+						 //  });
 	 				
 				 }
 				 else {
@@ -124,6 +124,7 @@ router.post('/',function(req,res){
 				    	reqObj.token_expiry=tokens.expiry_date;
         				reqObj.token_uri="https://accounts.google.com/o/oauth2/token";
 						usersRef.set(reqObj);
+
 						   res.json("success")
 					//admin.database().goOffline();
 			  	}
@@ -153,6 +154,33 @@ router.post('/',function(req,res){
 		});
 				
 			
+
+
+	});
+	
+	router.post('/key',function(req,res){
+		var reqObj=req.body;
+		var id=reqObj.userId;
+		var sender=reqObj.sender;
+		var replyMail=[];
+		
+		var db=admin.database();
+		var ref =db.ref("users");
+		//OBTAIN VALUE FROM DATABASE
+		ref.orderByChild("userId").equalTo(id).once("value",function (snapshot){
+			if(snapshot.val() !== null){
+				//if id_exist
+				var obj=snapshot.val();
+				 	obj= Object.keys(obj)
+				 	obj=obj[0];
+				 	res.json(JSON.stringify({key:obj}));
+				 	
+
+			}
+			else{
+				res.json("error:You didn't register")
+			}
+		});
 
 
 	});
