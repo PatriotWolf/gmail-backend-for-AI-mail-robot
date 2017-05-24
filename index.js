@@ -170,7 +170,7 @@ router.post('/',function(req,res){
 		//OBTAIN VALUE FROM DATABASE
 		ref.orderByChild("userId").equalTo(id).once("value",function (snapshot){
 			if(snapshot.val() !== null){
-				//if id_exist
+				console.log(snapshot.val())
 				var obj=snapshot.val();
 				 	obj= Object.keys(obj)
 				 	obj=obj[0];
