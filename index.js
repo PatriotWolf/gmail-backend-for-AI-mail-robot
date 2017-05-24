@@ -164,7 +164,7 @@ router.post('/',function(req,res){
 		var id=reqObj.userId;
 		var sender=reqObj.sender;
 		var replyMail=[];
-		console.log(id)
+		console.log(reqObj)
 		var db=admin.database();
 		var ref =db.ref("users");
 		//OBTAIN VALUE FROM DATABASE
